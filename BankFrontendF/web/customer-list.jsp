@@ -18,5 +18,6 @@
                 <tr><td>${customers.name}</td></tr>
                     </c:forEach>
         </table>
+        <a href="FrontController?command=back">Back</a>
     </body>
 </html>
