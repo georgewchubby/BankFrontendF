@@ -22,7 +22,6 @@ public class ListCustomersCommand extends TargetCommand {
         BankManager manager = Factory.getInstance().getManager();
         Collection<CustomerSummary> customers = manager.listCustomers();
 
-        request.setAttribute("message", "This is a test");
         request.setAttribute("customer", customers);
 
         return super.execute(request);

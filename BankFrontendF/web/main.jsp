@@ -15,8 +15,7 @@
         <h1>Bank main page ${message}</h1>
         <hr/>
         <ul>
-            <!-- li><a href="ListCustomers">List customers</a></li -->
-            <li><a href="Controller?command=list-customers">List customers</a></li>
+            <li><a href="FrontController?command=list-customers">List customers</a></li>
         </ul>
     </body>
 </html>
