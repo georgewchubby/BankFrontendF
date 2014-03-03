@@ -19,7 +19,7 @@
             ${message} for ${customer.cpr}
             <tr><td>Account Number</td><td>Account Type</td><td>Account Balance</td></tr>
             <c:forEach var="account" items="${accounts}">
-                <tr><td>${account.number}</td><td>${account.type}</td><td>${account.balance}</td></tr>
+                <tr><td><a href="FrontController?accid=${account.number}&command=account-detail">${account.number}</a></td><td>${account.type}</td><td>${account.balance}</td></tr>
             </c:forEach>
         </table>
         <hr/> 
