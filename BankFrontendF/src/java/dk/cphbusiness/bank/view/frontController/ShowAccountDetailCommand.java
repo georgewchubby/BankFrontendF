@@ -21,12 +21,12 @@ public class ShowAccountDetailCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         AccountIdentifier accid = AccountDetail.fromString(request.getParameter("accid"));
         AccountDetail adetail = Factory.getInstance().getManager().showAccountHistory(accid);
-        Collection<TransferSummary> transfers = adetail.getTransfers();
+        //Collection<TransferSummary> transfers = adetail.getTransfers();
 
-        request.setAttribute("accountid", accid);
+        //request.setAttribute("accountid", accid);
         request.setAttribute("message", "Details for account number");
         request.setAttribute("accountdetail", adetail);
-        request.setAttribute("transfers", transfers);
+        //request.setAttribute("transfers", transfers);
 
         return super.execute(request);
     }

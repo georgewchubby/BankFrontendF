@@ -15,15 +15,19 @@
     <body>
         <h1>Account list</h1>
         <hr/>
-        ${message} ${accountid.number}</br>
-        Type: ${accountdetail.type}</br>
-        Interest ${accountdetail.interest}</br>
+        ${message} ${accountdetail.number}<br>
+        Type: ${accountdetail.type}<br>
+        Interest ${accountdetail.interest}<br>
         <table border='1'>
             There are ${accountdetail.transfers.size()} transfers
             <tr><td>Date</td><td>Amount</td><td>Account Number</td></tr>
-            <c:forEach var="transfers" items="${transfers}">
-                <tr><td>${transfers.date}</td><td>${transfers.amount}</td><td>${transfers.accountNumber}</td></tr>
-                    </c:forEach>
+            <c:forEach var="transfer" items="${accountdetail.transfers}">
+                <tr>
+                    <td>${transfer.date}</td>
+                    <td>${transfer.amount}</td>
+                    <td>${transfer.accountNumber}</td>
+                </tr>
+            </c:forEach>
         </table>
         <hr/> 
         <a href="FrontController?command=back">Back to main page</a>

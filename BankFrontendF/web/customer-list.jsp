@@ -15,8 +15,11 @@
         <h1>Customer list</h1>
         <table border='1'>     
             <c:forEach var="customers" items="${customer}">
-                <tr><td><a href="FrontController?custid=${customers.cpr}&command=list-accounts">${customers.name}</a></td></tr>
-                    </c:forEach>
+                <tr>
+                    <td><a href="FrontController?custid=${customers.cpr}&command=list-accounts">${customers.cpr}</a></td>
+                    <td>${customers.name}</td>
+                </tr>
+            </c:forEach>
         </table>
         <hr/> 
         <a href="FrontController?command=back">Back</a>
