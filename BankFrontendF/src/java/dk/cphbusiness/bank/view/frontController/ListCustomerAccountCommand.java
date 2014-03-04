@@ -2,7 +2,6 @@ package dk.cphbusiness.bank.view.frontController;
 
 import dk.cphbusiness.bank.contract.dto.AccountSummary;
 import dk.cphbusiness.bank.contract.dto.CustomerIdentifier;
-import dk.cphbusiness.bank.contract.dto.CustomerSummary;
 import dk.cphbusiness.bank.view.Factory;
 import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;

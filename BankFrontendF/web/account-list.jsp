@@ -27,6 +27,6 @@
             </c:forEach>
         </table>
         <hr/> 
-        <a href="FrontController?command=back">Back to main page</a>
+         <a href="FrontController?command=prepare-transfer">Transfer funds</a> <a href="FrontController?command=back">Back to main page</a>
     </body>
 </html>

@@ -23,6 +23,7 @@ public class FrontController extends HttpServlet {
         commands.put("list-customers", new ListCustomersCommand("customer-list.jsp"));
         commands.put("list-accounts", new ListCustomerAccountCommand("account-list.jsp"));
         commands.put("account-detail", new ShowAccountDetailCommand("account-detail.jsp"));
+        commands.put("prepare-transfer", new PrepareTransferCommand("transfer-edit.jsp"));
         commands.put("back", new TargetCommand("main.jsp"));
         commands.put("main", new TargetCommand("main.jsp"));
     }
