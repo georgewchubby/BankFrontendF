@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,16 +17,27 @@
         <p>Fill out the boxes below with valid information</p>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="transfer-amount"/>
-            <label for="accountNumber"><pre>Account Number:</label><input type="text" name="accountNumber" value="${account.number}"/></pre><br />
-        <label for="amount"><pre>Amount:</label><input type="text" name="amount" value=""/></pre><br />
-    <label for="targetAccountNumber"><pre>Target Account Number:</label><input type="text" name="targetAccountNumber" value=""/></pre><br />
-<button>Complete Transfer</button>
-</form>
-<form action="FrontController" method="POST">
-    <input type="hidden" name="command" value="list-accounts"/>
-    <input type="hidden" name="cpr" value="${cpr}"/><br />
-    <button>Abort Transfer</button>
-</form>
-<a href="FrontController"> Back to Main</a>
-</body>
+            <label for="accountNumber">Account Number:</label>
+            <select>
+                <c:forEach var="accounts" items="${accounts}">
+                    <option>${accounts.number}</option>
+                </c:forEach>
+            </select>
+                        <!--<input type="text" name="accountNumber" value="${account.number}"/><br>-->
+            <br>
+            <label for="amount">Amount:</label><input type="text" name="amount" value=""/><br>
+            <br>
+            <label for="targetAccountNumber">Target Account Number:</label><input type="text" name="targetAccountNumber" value=""/><br>
+            <br>
+            <button>Complete Transfer</button>
+        </form>
+        <br>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="list-accounts"/>
+            <input type="hidden" name="cpr" value="${cpr}"/>
+            <button>Abort Transfer</button>
+        </form>
+        <br>
+        <a href="FrontController"> Back to Main</a>
+    </body>
 </html>
