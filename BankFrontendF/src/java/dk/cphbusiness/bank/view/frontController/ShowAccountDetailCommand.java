@@ -2,9 +2,7 @@ package dk.cphbusiness.bank.view.frontController;
 
 import dk.cphbusiness.bank.contract.dto.AccountDetail;
 import dk.cphbusiness.bank.contract.dto.AccountIdentifier;
-import dk.cphbusiness.bank.contract.dto.TransferSummary;
 import dk.cphbusiness.bank.view.Factory;
-import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 
 /**
