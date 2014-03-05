@@ -18,13 +18,13 @@
         <hr/>
         ${message} ${accountdetail.number}<br>
         Type: ${accountdetail.type}<br>
-        Interest ${accountdetail.interest}<br>
+        Interest <fmt:formatNumber type="PERCENT" value="${accountdetail.interest}" /><br>
         <table border='1'>
             There are ${accountdetail.transfers.size()} transfers
             <tr><td>Date</td><td>Amount</td><td>Account Number</td></tr>
             <c:forEach var="transfer" items="${accountdetail.transfers}">
                 <tr>
-                    <td><fmt:formatDate pattern="dd-MMM-yyyy HH:mm"
+                    <td><fmt:formatDate pattern="dd-MMM-yyyy HH:mm" 
                                     value="${transfer.date}" /></td>
                     <td>${transfer.amount}</td>
                     <td>${transfer.accountNumber}</td>
