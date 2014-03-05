@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,8 @@
             <tr><td>Date</td><td>Amount</td><td>Account Number</td></tr>
             <c:forEach var="transfer" items="${accountdetail.transfers}">
                 <tr>
-                    <td>${transfer.date}</td>
+                    <td><fmt:formatDate pattern="dd-MMM-yyyy HH:mm"
+                                    value="${transfer.date}" /></td>
                     <td>${transfer.amount}</td>
                     <td>${transfer.accountNumber}</td>
                 </tr>
