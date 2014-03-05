@@ -18,7 +18,7 @@
         <hr/>
         ${message} ${accountdetail.number}<br>
         Type: ${accountdetail.type}<br>
-        Interest <fmt:formatNumber type="PERCENT" value="${accountdetail.interest}" /><br>
+        Interest: <fmt:formatNumber type="PERCENT" value="${accountdetail.interest}" /><br>
         <table border='1'>
             There are ${accountdetail.transfers.size()} transfers
             <tr><td>Date</td><td>Amount</td><td>Account Number</td></tr>
