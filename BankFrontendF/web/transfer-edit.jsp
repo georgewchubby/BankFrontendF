@@ -16,28 +16,23 @@
         <h1>Transfer Page</h1>
         <p>Fill out the boxes below with valid information</p>
         <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="transfer-amount"/>
-            <label for="accountNumber">Account Number:</label>
-            <select>
+            Account Number:
+            <select name="accountNumber">
                 <c:forEach var="accounts" items="${accounts}">
                     <option>${accounts.number}</option>
                 </c:forEach>
             </select>
-                        <!--<input type="text" name="accountNumber" value="${account.number}"/><br>-->
-            <br>
-            <label for="amount">Amount:</label><input type="text" name="amount" value=""/><br>
-            <br>
-            <label for="targetAccountNumber">Target Account Number:</label><input type="text" name="targetAccountNumber" value=""/><br>
-            <br>
-            <button>Complete Transfer</button>
+            <br />
+            <br />
+            Amount:<input type="text" name="amount" /><br />
+            <br />
+            Target Account Number:<input type="text" name="targetAccountNumber" /><br />
+            <br />
+            <input type="submit" value="Complete transfer" onclick="form.action = 'FrontController?command=transfer-amount'" />
+            <input type="submit" value="Cancel transfer" onclick="form.action = 'FrontController?command=cancel-transfer'" /> <br />
         </form>
-        <br>
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="list-accounts"/>
-            <input type="hidden" name="cpr" value="${cpr}"/>
-            <button>Abort Transfer</button>
-        </form>
-        <br>
-        <a href="FrontController"> Back to Main</a>
+        <br />
+        <br />
+        <a href="FrontController?command=back">Back to Main</a>
     </body>
 </html>

@@ -25,7 +25,7 @@ public class ListCustomerAccountCommand extends TargetCommand {
         
         session.setAttribute("accounts", accounts);
         request.setAttribute("message", "These are the account(s)");
-        request.setAttribute("customer", customer);
+        session.setAttribute("customer", customer);
         
         return super.execute(request);
     }
