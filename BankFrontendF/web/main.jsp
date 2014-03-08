@@ -16,6 +16,7 @@
         <hr/>
         <ul>
             <li><a href="FrontController?command=list-customers">List customers</a></li>
+            <li><a href="FrontController?command=create-customer">Create customer</a></li>
         </ul>
     </body>
 </html>

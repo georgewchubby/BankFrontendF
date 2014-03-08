@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Customer list</h1>
+        <hr/> 
         <table border='1'>     
             <c:forEach var="customers" items="${customer}">
                 <tr>
@@ -22,6 +23,6 @@
             </c:forEach>
         </table>
         <hr/> 
-        <a href="FrontController?command=back">Back</a>
+        <a href="FrontController?command=back">Back to Main</a>
     </body>
 </html>

@@ -14,6 +14,7 @@
     </head>
     <body>
         <h1>Transfer Page</h1>
+        <hr/> 
         <p>Fill out the boxes below with valid information</p>
         <form action="FrontController" method="POST">
             Account Number:
@@ -32,7 +33,7 @@
             <input type="submit" value="Cancel transfer" onclick="form.action = 'FrontController?command=cancel-transfer'" /> <br />
         </form>
         <br />
-        <br />
+        <hr />
         <a href="FrontController?command=back">Back to Main</a>
     </body>
 </html>
