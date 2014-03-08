@@ -17,6 +17,7 @@
         <form action="FrontController" method="POST">
             <table border='1'>
                 <tr><td>CPR:</td><td><input type="text" name="customerCPR" /></td></tr>
+                <tr><td>Title:</td><td><input type="text" name="customerTitle" /></td></tr>
                 <tr><td>First Name:</td><td><input type="text" name="customerFirstName" /></td></tr>
                 <tr><td>Last Name:</td><td><input type="text" name="customerLastName" /></td></tr>
                 <tr><td>Street:</td><td><input type="text" name="customerStreet" /></td></tr>
