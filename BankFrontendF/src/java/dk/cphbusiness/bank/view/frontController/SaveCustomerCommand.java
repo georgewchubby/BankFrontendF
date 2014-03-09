@@ -1,7 +1,6 @@
 package dk.cphbusiness.bank.view.frontController;
 
 import dk.cphbusiness.bank.contract.BankManager;
-import dk.cphbusiness.bank.contract.dto.AccountIdentifier;
 import dk.cphbusiness.bank.contract.dto.CustomerDetail;
 import dk.cphbusiness.bank.contract.dto.CustomerSummary;
 import dk.cphbusiness.bank.view.Factory;
@@ -21,6 +20,7 @@ public class SaveCustomerCommand extends TargetCommand {
     @Override
     public String execute(HttpServletRequest request) {
         BankManager manager = Factory.getInstance().getManager();
+        
         String cpr = request.getParameter("customerCPR");
         String title = request.getParameter("customerTitle");
         String firstName = request.getParameter("customerFirstName");

@@ -15,6 +15,8 @@
     <body>
         <h1>Account list</h1>
         <hr/>
+        <a href="FrontController?command=create-account">Create New Account</a>
+        <hr/>
         <table border='1'> 
             ${message} for ${customer.cpr}
             <tr><td>Account Number</td><td>Account Type</td><td>Account Balance</td></tr>
