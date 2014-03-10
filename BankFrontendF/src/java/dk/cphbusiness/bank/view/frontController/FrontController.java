@@ -35,7 +35,7 @@ public class FrontController extends HttpServlet {
         commands.put("transfer-amount", new TransferAmountCommand("account-detail.jsp"));
         commands.put("cancel-transfer", new CancelTransferCommand("account-list.jsp"));
         
-        commands.put("back", new TargetCommand("main.jsp"));
+        commands.put("back", new BackCommand("main.jsp"));
         commands.put("main", new TargetCommand("main.jsp"));
     }
 
