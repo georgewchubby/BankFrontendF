@@ -3,7 +3,9 @@ package dk.cphbusiness.bank.view.frontController;
 import dk.cphbusiness.bank.contract.dto.AccountDetail;
 import dk.cphbusiness.bank.contract.dto.AccountIdentifier;
 import dk.cphbusiness.bank.view.Factory;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 /**
  *
@@ -11,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ShowAccountDetailCommand extends TargetCommand {
 
-    public ShowAccountDetailCommand(String target) {
+    public ShowAccountDetailCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 

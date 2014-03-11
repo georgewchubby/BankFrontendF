@@ -10,14 +10,16 @@ import dk.cphbusiness.bank.contract.eto.TransferNotAcceptedException;
 import dk.cphbusiness.bank.view.Factory;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 /**
  * @author David Wroblewski
  */
 public class TransferAmountCommand extends TargetCommand {
 
-    public TransferAmountCommand(String target) {
+    public TransferAmountCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 

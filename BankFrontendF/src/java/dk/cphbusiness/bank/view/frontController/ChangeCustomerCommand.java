@@ -5,9 +5,12 @@ import dk.cphbusiness.bank.contract.dto.CustomerDetail;
 import dk.cphbusiness.bank.contract.dto.CustomerIdentifier;
 import dk.cphbusiness.bank.contract.eto.NoSuchCustomerException;
 import dk.cphbusiness.bank.view.Factory;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import security.SecurityRole;
 
 /**
  *
@@ -15,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class ChangeCustomerCommand extends TargetCommand {
 
-    public ChangeCustomerCommand(String target) {
+    public ChangeCustomerCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 
@@ -26,7 +29,8 @@ public class ChangeCustomerCommand extends TargetCommand {
         
         try {
             CustomerDetail customer = manager.showCustomer(customerID);
-            request.setAttribute("customer", customer);
+            HttpSession session = request.getSession();
+            session.setAttribute("customer", customer);
         } catch (NoSuchCustomerException ex) {
             Logger.getLogger(ChangeCustomerCommand.class.getName()).log(Level.SEVERE, null, ex);
         }        

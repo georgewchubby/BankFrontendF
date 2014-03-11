@@ -8,4 +8,23 @@
     <welcome-file-list>
         <welcome-file>FrontController</welcome-file>
     </welcome-file-list>
+    <security-role>
+        <description>Can only access information about themselves</description>
+        <role-name>Customer</role-name>
+    </security-role>
+    <security-role>
+        <description>Can see information about all customers</description>
+        <role-name>Employee</role-name>
+    </security-role>
+    <security-role>
+        <description>Can add customers + employee access</description>
+        <role-name>SuperEmployee</role-name>
+    </security-role>
+    <error-page>
+        <exception-type>java.lang.SecurityException</exception-type>
+        <location>/errorPages/notRequiredRightsPage.jsp</location>
+    </error-page>
+    <login-config>
+        <auth-method>FORM</auth-method>
+    </login-config>
 </web-app>

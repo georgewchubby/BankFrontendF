@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,8 +16,23 @@
         <h1>Bank main page ${message}</h1>
         <hr/>
         <ul>
-            <li><a href="FrontController?command=create-customer">Create customer</a></li>
-            <li><a href="FrontController?command=list-customers">List customers</a></li>
+            <c:if test="${pageContext.request.isUserInRole('SuperEmployee')==true}">
+                <li><a href="FrontController?command=create-customer">Create customer</a></li>
+                </c:if>
+                <c:if test="${pageContext.request.isUserInRole('Employee')==true || 
+                              pageContext.request.isUserInRole('SuperEmployee')==true}">
+                <li><a href="FrontController?command=list-customers">List customers</a></li>
+                </c:if>
         </ul>
+        <h3>
+            <c:choose >
+                <c:when test="${pageContext.request.remoteUser== null}">
+                    <a href="FrontController?command=showlogin">Login</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="FrontController?command=logout">Log out</a>
+                </c:otherwise>
+            </c:choose>
+        </h3>
     </body>
 </html>

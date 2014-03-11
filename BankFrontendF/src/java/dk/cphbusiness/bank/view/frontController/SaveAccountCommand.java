@@ -10,8 +10,10 @@ import dk.cphbusiness.bank.contract.eto.NoSuchCustomerException;
 import dk.cphbusiness.bank.view.Factory;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import security.SecurityRole;
 
 /**
  *
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpSession;
  */
 public class SaveAccountCommand extends TargetCommand {
 
-    public SaveAccountCommand(String target) {
+    public SaveAccountCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 

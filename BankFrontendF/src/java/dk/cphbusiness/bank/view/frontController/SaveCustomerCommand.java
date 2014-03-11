@@ -5,7 +5,10 @@ import dk.cphbusiness.bank.contract.dto.CustomerDetail;
 import dk.cphbusiness.bank.contract.dto.CustomerSummary;
 import dk.cphbusiness.bank.view.Factory;
 import java.util.Collection;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import security.SecurityRole;
 
 /**
  *
@@ -13,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class SaveCustomerCommand extends TargetCommand {
 
-    public SaveCustomerCommand(String target) {
+    public SaveCustomerCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 
@@ -21,7 +24,7 @@ public class SaveCustomerCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         BankManager manager = Factory.getInstance().getManager();
         
-        String cpr = request.getParameter("customerCPR");
+        //String cpr = request.getParameter("customerCPR");
         String title = request.getParameter("customerTitle");
         String firstName = request.getParameter("customerFirstName");
         String lastName = request.getParameter("customerLastName");
@@ -31,8 +34,16 @@ public class SaveCustomerCommand extends TargetCommand {
         String phone = request.getParameter("customerPhone");
         String email = request.getParameter("customerEmail");
         
-        CustomerDetail customer = new CustomerDetail(cpr, title, firstName,
-                lastName, street, postalCode, postalDistrict, phone, email);
+        HttpSession session = request.getSession();
+        CustomerDetail customer = (CustomerDetail) session.getAttribute("customer");
+        customer.setTitle(title);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setStreet(street);
+        customer.setPostalCode(postalCode);
+        customer.setPostalDistrict(postalDistrict);
+        customer.setPhone(phone);
+        customer.setEmail(email);
         
         manager.saveCustomer(customer);
         Collection<CustomerSummary> customers = manager.listCustomers();

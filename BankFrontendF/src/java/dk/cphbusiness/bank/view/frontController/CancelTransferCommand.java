@@ -1,6 +1,8 @@
 package dk.cphbusiness.bank.view.frontController;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 /**
  *
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CancelTransferCommand extends TargetCommand {
 
-    public CancelTransferCommand(String target) {
+    public CancelTransferCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 

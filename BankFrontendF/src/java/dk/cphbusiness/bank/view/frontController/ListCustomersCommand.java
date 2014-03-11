@@ -4,7 +4,9 @@ import dk.cphbusiness.bank.contract.BankManager;
 import dk.cphbusiness.bank.contract.dto.CustomerSummary;
 import dk.cphbusiness.bank.view.Factory;
 import java.util.Collection;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 /**
  *
@@ -13,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class ListCustomersCommand extends TargetCommand {
 
-    public ListCustomersCommand(String target) {
+    public ListCustomersCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
 

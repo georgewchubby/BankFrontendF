@@ -1,6 +1,8 @@
 package dk.cphbusiness.bank.view.frontController;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import security.SecurityRole;
 
 /**
  *
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CreateAccountCommand extends TargetCommand {
 
-    public CreateAccountCommand(String target) {
+    public CreateAccountCommand(String target, List<SecurityRole> roles) {
         super(target);
     }
     
