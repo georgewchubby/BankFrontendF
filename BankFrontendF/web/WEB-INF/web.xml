@@ -27,4 +27,35 @@
     <login-config>
         <auth-method>FORM</auth-method>
     </login-config>
+    <context-param>
+        <description>Port for non SSL communication</description>
+        <param-name>portNonSSL</param-name>
+        <param-value>8080</param-value>
+    </context-param>
+    <context-param>
+        <description>Port for SSL communication</description>
+        <param-name>portSSL</param-name>
+        <param-value>8181</param-value>
+    </context-param>
+    <context-param>
+        <description>Should the application switch to secure mode
+            Values: TRUE or FALSE</description>
+        <param-name>useSSL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <description>If the system should logon automatically using the username given in the autologon properties</description>
+        <param-name>autoLogon</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <description>Autologon username (Has no effect if autoLogon is set to false)</description>
+        <param-name>autoLogonUser</param-name>
+        <param-value>e1@bank.dk</param-value>
+    </context-param>
+    <context-param>
+        <description>Autologon password (Has no effect if autoLogon is set to false)</description>
+        <param-name>autoLogonPassword</param-name>
+        <param-value>test</param-value>
+    </context-param>
 </web-app>

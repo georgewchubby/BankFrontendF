@@ -1,17 +1,12 @@
 package dk.cphbusiness.bank.view.frontController;
 
+import dk.cphbusiness.bank.view.Factory;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import security.SecurityRole;
 
 /**
  *
@@ -20,7 +15,6 @@ import security.SecurityRole;
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
 
-    private final Map<String, Command> commands = new HashMap<>();
     private int PORT_NON_SSL;
     private int PORT_SSL;
     private boolean useSSL = true;
@@ -29,71 +23,7 @@ public class FrontController extends HttpServlet {
     private String autoLogonPassword;
 
     public FrontController() {
-        commands.put("list-customers", new ListCustomersCommand("customer-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("create-customer", new CreateCustomerCommand("customer-edit.jsp", Arrays.asList(SecurityRole.SuperEmployee)));
-        commands.put("save-customer", new SaveCustomerCommand("customer-list.jsp", Arrays.asList(SecurityRole.SuperEmployee)));
-        commands.put("change-customer", new ChangeCustomerCommand("customer-edit.jsp", Arrays.asList(SecurityRole.SuperEmployee)));
 
-        commands.put("list-accounts", new ListCustomerAccountCommand("account-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("account-detail", new ShowAccountDetailCommand("account-detail.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("create-account", new CreateAccountCommand("account-edit.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("save-account", new SaveAccountCommand("account-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("cancel-create-account", new CancelCreateAccountCommand("account-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-
-        commands.put("prepare-transfer", new PrepareTransferCommand("transfer-edit.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("transfer-amount", new TransferAmountCommand("account-detail.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-        commands.put("cancel-transfer", new CancelTransferCommand("account-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
-
-        commands.put("showlogin", new ShowLoginCommand("/login/login.jsp", Arrays.asList(SecurityRole.All)));
-        commands.put("logout", new LogoutCommand("main.jsp", Arrays.asList(SecurityRole.All)));
-        commands.put("back", new BackCommand("main.jsp", Arrays.asList(SecurityRole.All)));
-        commands.put("main", new TargetCommand("main.jsp", Arrays.asList(SecurityRole.All)));
-
-        Map<SecurityRole, String> roles = new HashMap();
-        roles.put(SecurityRole.Employee, "/employees/startEmployeePage.jsp");
-        roles.put(SecurityRole.SuperEmployee, "/superEmployee/addCustomer.jsp");
-        roles.put(SecurityRole.Customer, "/customers/startCustomerPage.jsp");
-        commands.put("login", new LoginCommand(roles, "/login/login.jsp"));
-    }
-
-    public Command getCommand(String cmdStr, HttpServletRequest request) {
-        if (cmdStr == null) {
-            cmdStr = "main";
-        }
-        Command cmd = commands.get(cmdStr);
-        securityCheck(cmd, request);
-        return cmd;
-    }
-
-    private void securityCheck(Command command, HttpServletRequest request) throws SecurityException {
-        if (command instanceof TargetCommand) {
-            List<SecurityRole> requiredRoles = ((TargetCommand) command).getRoles();
-            boolean requiredRoleFound = false;
-            for (SecurityRole requiredRole : requiredRoles) {
-                if (requiredRole == SecurityRole.All || request.isUserInRole(requiredRole.toString())) {
-                    requiredRoleFound = true;
-                    break;
-                }
-            }
-            if (!requiredRoleFound) {
-                throw new SecurityException("You don't have the necessary rights to perform this command");
-            }
-        }
-    }
-
-    @Override
-    protected void service(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
-        String key = request.getParameter("command");
-        if (key == null) {
-            key = "main";
-        }
-        Command command = commands.get(key);
-        String target = command.execute(request);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(target);
-        dispatcher.forward(request, response);
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -108,7 +38,7 @@ public class FrontController extends HttpServlet {
             request.setAttribute("password", autoLogonPassword);
         }
 
-        Command command = getCommand(cmdStr, request);
+        Command command = Factory.getInstance().getCommand(cmdStr, request);
 
         String path = command.execute(request);
 
@@ -143,4 +73,43 @@ public class FrontController extends HttpServlet {
         autoLogonUser = getServletContext().getInitParameter("autoLogonUser");
         autoLogonPassword = getServletContext().getInitParameter("autoLogonPassword");
     }
+    
+     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+  /**
+   * Handles the HTTP <code>GET</code> method.
+   *
+   * @param request servlet request
+   * @param response servlet response
+   * @throws ServletException if a servlet-specific error occurs
+   * @throws IOException if an I/O error occurs
+   */
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    processRequest(request, response);
+  }
+
+  /**
+   * Handles the HTTP <code>POST</code> method.
+   *
+   * @param request servlet request
+   * @param response servlet response
+   * @throws ServletException if a servlet-specific error occurs
+   * @throws IOException if an I/O error occurs
+   */
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    processRequest(request, response);
+  }
+
+  /**
+   * Returns a short description of the servlet.
+   *
+   * @return a String containing servlet description
+   */
+  @Override
+  public String getServletInfo() {
+    return "Short description";
+  }// </editor-fold>
 }
