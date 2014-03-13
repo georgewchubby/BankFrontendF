@@ -16,6 +16,14 @@
         <h1>Bank main page ${message}</h1>
         <hr/>
         <ul>
+            <li>Remote user: '${pageContext.request.remoteUser}'</li>
+            <li>SuperEmployee: ${pageContext.request.isUserInRole('SuperEmployee')}</li>
+            <li>Employee: ${pageContext.request.isUserInRole('Employee')}</li>
+            <li>Customer: ${pageContext.request.isUserInRole('Customer')}</li>
+
+        </ul>
+        
+        <ul>
             <c:if test="${pageContext.request.isUserInRole('SuperEmployee')==true}">
                 <li><a href="FrontController?command=create-customer">Create customer</a></li>
                 </c:if>
@@ -26,7 +34,7 @@
         </ul>
         <h3>
             <c:choose >
-                <c:when test="${pageContext.request.remoteUser== null}">
+                <c:when test="${pageContext.request.remoteUser==null}">
                     <a href="FrontController?command=showlogin">Login</a>
                 </c:when>
                 <c:otherwise>

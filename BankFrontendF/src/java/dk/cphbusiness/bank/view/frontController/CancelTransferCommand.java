@@ -11,7 +11,7 @@ import security.SecurityRole;
 public class CancelTransferCommand extends TargetCommand {
 
     public CancelTransferCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target,roles);
     }
 
     @Override

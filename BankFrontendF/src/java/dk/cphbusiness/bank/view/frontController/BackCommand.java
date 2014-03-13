@@ -12,7 +12,7 @@ import security.SecurityRole;
 public class BackCommand extends TargetCommand {
 
     public BackCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target,roles);
     }
 
     @Override

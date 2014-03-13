@@ -16,7 +16,7 @@ import security.SecurityRole;
 public class ListCustomersCommand extends TargetCommand {
 
     public ListCustomersCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target, roles);
     }
 
     @Override

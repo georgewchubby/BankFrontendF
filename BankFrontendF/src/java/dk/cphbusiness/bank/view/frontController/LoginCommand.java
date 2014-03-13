@@ -1,5 +1,7 @@
 package dk.cphbusiness.bank.view.frontController;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,5 +47,10 @@ public class LoginCommand implements Command {
             Logger.getLogger(LoginCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         return nextPage;
+    }
+
+    @Override
+    public List<SecurityRole> getRoles() {
+        return Arrays.asList();
     }
 }

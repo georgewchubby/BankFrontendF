@@ -13,7 +13,7 @@ import security.SecurityRole;
 public class CreateCustomerCommand extends TargetCommand {
 
     public CreateCustomerCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target,roles);
     }
 
     @Override

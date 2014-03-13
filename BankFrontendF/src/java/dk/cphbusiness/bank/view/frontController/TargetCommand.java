@@ -10,10 +10,11 @@ public class TargetCommand implements Command {
     private final String target;
     private final List<SecurityRole> roles = new ArrayList();
 
-    public TargetCommand(String target) {
-        this.target = target;
-    }
+//    public TargetCommand(String target) {
+//        this.target = target;
+//    }
 
+    @Override
     public List<SecurityRole> getRoles() {
         return roles;
     }

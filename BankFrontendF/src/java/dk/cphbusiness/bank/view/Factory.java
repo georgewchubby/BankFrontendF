@@ -76,14 +76,23 @@ public class Factory {
         }
         Command cmd = commands.get(cmdStr);
         securityCheck(cmd, request);
-        return cmd;
+        System.out.println("Roles #1 "+cmd.getRoles().size());
+        System.out.println("Roles #1 "+cmd.getRoles().size());
+
+         return cmd;
+    }
+    public BankManager getManager() {
+        return manager;
     }
 
     private void securityCheck(Command command, HttpServletRequest request) throws SecurityException {
         if (command instanceof TargetCommand) {
-            List<SecurityRole> requiredRoles = ((TargetCommand) command).getRoles();
+//            List<SecurityRole> requiredRoles = ((TargetCommand) command).getRoles();
+            List<SecurityRole> requiredRoles = command.getRoles();
+            System.out.println("Roles "+requiredRoles.size());
             boolean requiredRoleFound = false;
             for (SecurityRole requiredRole : requiredRoles) {
+                System.out.println("Role "+requiredRole+" "+request.isUserInRole(requiredRole.toString()));
                 if (requiredRole == SecurityRole.All || request.isUserInRole(requiredRole.toString())) {
                     requiredRoleFound = true;
                     break;
@@ -95,8 +104,5 @@ public class Factory {
         }
     }
 
-    public BankManager getManager() {
-        return manager;
-    }
 
 }

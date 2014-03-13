@@ -11,7 +11,7 @@ import security.SecurityRole;
 public class CancelCreateAccountCommand extends TargetCommand {
 
     public CancelCreateAccountCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target,roles);
     }
 
     @Override

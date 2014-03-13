@@ -20,7 +20,7 @@ import security.SecurityRole;
 public class TransferAmountCommand extends TargetCommand {
 
     public TransferAmountCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target, roles);
     }
 
     @Override

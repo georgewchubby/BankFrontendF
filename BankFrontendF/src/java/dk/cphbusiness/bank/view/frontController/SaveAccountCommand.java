@@ -22,7 +22,7 @@ import security.SecurityRole;
 public class SaveAccountCommand extends TargetCommand {
 
     public SaveAccountCommand(String target, List<SecurityRole> roles) {
-        super(target);
+        super(target,roles);
     }
 
     @Override

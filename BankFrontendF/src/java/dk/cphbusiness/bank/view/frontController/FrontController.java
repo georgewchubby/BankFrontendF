@@ -31,22 +31,22 @@ public class FrontController extends HttpServlet {
         String cmdStr = request.getParameter("command");
         cmdStr = cmdStr != null ? cmdStr : "main";
         //Provides auto login. See LoginCommand for the full story
-        if (request.getRemoteUser() == null && autoLogon) {
+        if (request.getRemoteUser() == null ) {
             cmdStr = "login";
-            request.setAttribute("autoLogon", "YES");
-            request.setAttribute("username", autoLogonUser);
-            request.setAttribute("password", autoLogonPassword);
+//            request.setAttribute("autoLogon", "YES");
+//            request.setAttribute("username", autoLogonUser);
+//            request.setAttribute("password", autoLogonPassword);
         }
 
         Command command = Factory.getInstance().getCommand(cmdStr, request);
 
         String path = command.execute(request);
 
-        if (useSSL && !autoLogon) { //So we can disable the SSL switch
-            SSL_Switch(command, request, response, path);
-        } else {
+//        if (useSSL) { //So we can disable the SSL switch
+//            SSL_Switch(command, request, response, path);
+//        } else {
             request.getRequestDispatcher(path).forward(request, response);
-        }
+//        }
 
     }
 
