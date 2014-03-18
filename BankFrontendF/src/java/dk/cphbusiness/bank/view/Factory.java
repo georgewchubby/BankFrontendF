@@ -15,6 +15,7 @@ import dk.cphbusiness.bank.view.frontController.LogoutCommand;
 import dk.cphbusiness.bank.view.frontController.PrepareTransferCommand;
 import dk.cphbusiness.bank.view.frontController.SaveAccountCommand;
 import dk.cphbusiness.bank.view.frontController.SaveCustomerCommand;
+import dk.cphbusiness.bank.view.frontController.SayHelloCommand;
 import dk.cphbusiness.bank.view.frontController.ShowAccountDetailCommand;
 import dk.cphbusiness.bank.view.frontController.ShowLoginCommand;
 import dk.cphbusiness.bank.view.frontController.TargetCommand;
@@ -24,17 +25,25 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import security.SecurityRole;
 
 public class Factory {
 
+    //BankManager bankManagerBean = lookupBankManagerBeanRemote();
+
     private static Factory instance = new Factory();
-    private final BankManager manager;
+    private BankManager manager;
     private final Map<String, Command> commands = new HashMap<>();
 
     private Factory() {
-        manager = new DummyBankManager();
+        //manager = new DummyBankManager();
+        manager = lookupBankManagerBeanRemote();
 
         commands.put("list-customers", new ListCustomersCommand("customer-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
         commands.put("create-customer", new CreateCustomerCommand("customer-edit.jsp", Arrays.asList(SecurityRole.SuperEmployee)));
@@ -55,6 +64,7 @@ public class Factory {
         commands.put("logout", new LogoutCommand("main.jsp", Arrays.asList(SecurityRole.All)));
         commands.put("back", new BackCommand("main.jsp", Arrays.asList(SecurityRole.All)));
         commands.put("main", new TargetCommand("main.jsp", Arrays.asList(SecurityRole.All)));
+        commands.put("hello", new SayHelloCommand("hello.jsp", Arrays.asList(SecurityRole.All)));
 
         Map<SecurityRole, String> roles = new HashMap();
         roles.put(SecurityRole.Employee, "/employees/startEmployeePage.jsp");
@@ -76,11 +86,12 @@ public class Factory {
         }
         Command cmd = commands.get(cmdStr);
         securityCheck(cmd, request);
-        System.out.println("Roles #1 "+cmd.getRoles().size());
-        System.out.println("Roles #1 "+cmd.getRoles().size());
+        System.out.println("Roles #1 " + cmd.getRoles().size());
+        System.out.println("Roles #1 " + cmd.getRoles().size());
 
-         return cmd;
+        return cmd;
     }
+
     public BankManager getManager() {
         return manager;
     }
@@ -89,10 +100,10 @@ public class Factory {
         if (command instanceof TargetCommand) {
 //            List<SecurityRole> requiredRoles = ((TargetCommand) command).getRoles();
             List<SecurityRole> requiredRoles = command.getRoles();
-            System.out.println("Roles "+requiredRoles.size());
+            System.out.println("Roles " + requiredRoles.size());
             boolean requiredRoleFound = false;
             for (SecurityRole requiredRole : requiredRoles) {
-                System.out.println("Role "+requiredRole+" "+request.isUserInRole(requiredRole.toString()));
+                System.out.println("Role " + requiredRole + " " + request.isUserInRole(requiredRole.toString()));
                 if (requiredRole == SecurityRole.All || request.isUserInRole(requiredRole.toString())) {
                     requiredRoleFound = true;
                     break;
@@ -104,5 +115,14 @@ public class Factory {
         }
     }
 
+    private BankManager lookupBankManagerBeanRemote() {
+        try {
+            Context c = new InitialContext();
+            return (BankManager) c.lookup("java:global/BankBackendF/BankManagerBean!dk.cphbusiness.bank.contract.BankManager");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
 
 }

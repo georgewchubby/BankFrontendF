@@ -63,4 +63,9 @@
         <param-name>autoLogonPassword</param-name>
         <param-value>test</param-value>
     </context-param>
+    <ejb-ref>
+        <ejb-ref-name>BankManagerBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>dk.cphbusiness.bank.contract.BankManager</remote>
+    </ejb-ref>
 </web-app>

@@ -30,6 +30,7 @@
                 <c:if test="${pageContext.request.isUserInRole('Employee')==true || 
                               pageContext.request.isUserInRole('SuperEmployee')==true}">
                 <li><a href="FrontController?command=list-customers">List customers</a></li>
+                <a href="FrontController?command=hello">Hello</a>
                 </c:if>
         </ul>
         <h3>
