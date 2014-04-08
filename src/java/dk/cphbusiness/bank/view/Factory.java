@@ -40,8 +40,8 @@ public class Factory {
     private final Map<String, Command> commands = new HashMap<>();
 
     private Factory() {
-        manager = new DummyBankManager();
-        //manager = lookupBankManagerBeanRemote();
+      //  manager = new DummyBankManager();
+        manager = lookupBankManagerBeanRemote();
 
         commands.put("list-customers", new ListCustomersCommand("customer-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
         commands.put("create-customer", new CreateCustomerCommand("customer-edit.jsp", Arrays.asList(SecurityRole.SuperEmployee)));
