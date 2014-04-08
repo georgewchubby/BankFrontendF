@@ -17,9 +17,9 @@ public class BackCommand extends TargetCommand {
 
     @Override
     public String execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-
-        session.invalidate();
+//        HttpSession session = request.getSession();
+//
+//        session.invalidate();
 
         return super.execute(request);
     }

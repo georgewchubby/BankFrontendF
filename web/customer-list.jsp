@@ -18,7 +18,8 @@
             <c:forEach var="customers" items="${customers}">
                 <tr>
                     <td><a href="FrontController?custid=${customers.cpr}&command=list-accounts">${customers.cpr}</a></td>
-                    <td>${customers.firstName} ${customers.lastName}</td>
+                    <td>${customers.name}</td>
+                    <%--<td>${customers.firstName} ${customers.lastName}</td>--%>
                     <td><a href="FrontController?custid=${customers.cpr}&command=change-customer">Edit</a></td>
                 </tr>
             </c:forEach>
