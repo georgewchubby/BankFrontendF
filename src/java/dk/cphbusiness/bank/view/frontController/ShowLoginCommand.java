@@ -1,7 +1,7 @@
 package dk.cphbusiness.bank.view.frontController;
 
 import java.util.List;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
   // @author Lars Mortensen
 // This command is necessary because it give us a type to test against

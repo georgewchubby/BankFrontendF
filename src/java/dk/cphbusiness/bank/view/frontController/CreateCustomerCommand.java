@@ -4,7 +4,7 @@ import dk.cphbusiness.bank.contract.dto.CustomerDetail;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 /**
  *

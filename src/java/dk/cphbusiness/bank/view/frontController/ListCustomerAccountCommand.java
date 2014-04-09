@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 /**
  *

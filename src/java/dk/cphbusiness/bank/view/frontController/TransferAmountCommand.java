@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 /**
  * @author David Wroblewski

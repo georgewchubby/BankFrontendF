@@ -3,12 +3,11 @@ package dk.cphbusiness.bank.view.frontController;
 import dk.cphbusiness.bank.contract.BankManager;
 import dk.cphbusiness.bank.contract.dto.CustomerDetail;
 import dk.cphbusiness.bank.contract.dto.CustomerSummary;
+import dk.cphbusiness.bank.security.SecurityRole;
 import dk.cphbusiness.bank.view.Factory;
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import security.SecurityRole;
 
 /**
  *
@@ -24,7 +23,7 @@ public class SaveCustomerCommand extends TargetCommand {
     public String execute(HttpServletRequest request) {
         BankManager manager = Factory.getInstance().getManager();
         
-        //String cpr = request.getParameter("customerCPR");
+        String cpr = request.getParameter("customerCPR");
         String title = request.getParameter("customerTitle");
         String firstName = request.getParameter("customerFirstName");
         String lastName = request.getParameter("customerLastName");
@@ -34,8 +33,9 @@ public class SaveCustomerCommand extends TargetCommand {
         String phone = request.getParameter("customerPhone");
         String email = request.getParameter("customerEmail");
         
-        HttpSession session = request.getSession();
-        CustomerDetail customer = (CustomerDetail) session.getAttribute("customer");
+        //HttpSession session = request.getSession();
+        //CustomerDetail customer = (CustomerDetail) session.getAttribute("customer");
+        CustomerDetail customer = new CustomerDetail(cpr);
         customer.setTitle(title);
         customer.setFirstName(firstName);
         customer.setLastName(lastName);

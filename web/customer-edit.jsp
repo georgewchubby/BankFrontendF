@@ -26,14 +26,15 @@
                 // validate the comment form when it is submitted
                 $("#myform").validate({
                     rules: {
-                        customerCPR: {required: true},
+                        customerCPR: {required: true, remote: "AjaxServlet"},
                         customerFirstName: {required: true, minlength: 2},
                         customerLastName: {required: true, minlength: 2},
                         customerEmail: {required: true, email: true}
                     },
                     messages: {
                         customerCPR: {
-                            required: "Please enter a CPR-number"
+                            required: "Please enter a CPR-number",
+                            remote: "The CPR number has already been used"
                         },
                         customerFirstName: {
                             required: "Please enter you first name",

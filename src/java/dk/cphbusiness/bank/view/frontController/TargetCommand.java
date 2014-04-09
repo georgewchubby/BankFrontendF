@@ -3,7 +3,7 @@ package dk.cphbusiness.bank.view.frontController;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 public class TargetCommand implements Command {
 

@@ -5,7 +5,7 @@ import dk.cphbusiness.bank.contract.dto.AccountIdentifier;
 import dk.cphbusiness.bank.view.Factory;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 /**
  *

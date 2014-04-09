@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 /**
  *

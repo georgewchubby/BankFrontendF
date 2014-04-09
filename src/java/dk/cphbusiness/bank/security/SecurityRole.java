@@ -1,4 +1,4 @@
-package security;
+package dk.cphbusiness.bank.security;
 
 /**
  *Important must match spelling in role declaration unless "security role reference" is used

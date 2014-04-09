@@ -31,7 +31,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
-import security.SecurityRole;
+import dk.cphbusiness.bank.security.SecurityRole;
 
 public class Factory {
 
@@ -40,7 +40,7 @@ public class Factory {
     private final Map<String, Command> commands = new HashMap<>();
 
     private Factory() {
-      //  manager = new DummyBankManager();
+        //manager = new DummyBankManager();
         manager = lookupBankManagerBeanRemote();
 
         commands.put("list-customers", new ListCustomersCommand("customer-list.jsp", Arrays.asList(SecurityRole.Employee, SecurityRole.SuperEmployee)));
@@ -116,7 +116,7 @@ public class Factory {
     private BankManager lookupBankManagerBeanRemote() {
         try {
             Context c = new InitialContext();
-            return (BankManager) c.lookup("java:global/BankBackendF/BankManagerBean!dk.cphbusiness.bank.contract.BankManager");
+            return (BankManager) c.lookup("java:global/BankBackendE/BankManagerBean!dk.cphbusiness.bank.contract.BankManager");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
